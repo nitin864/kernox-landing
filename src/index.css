@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #b7f397;
+  --ink: #f2f2ed;
+  --soft: #b2b2ad;
+  --muted: #686864;
+  --line: #454541;
+  --bg: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background: #000;
+  color: var(--ink);
+  font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  text-rendering: optimizeLegibility;
+}
+
+body::selection {
+  background: var(--accent);
+  color: #000;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.ascii,
+pre {
+  white-space: pre;
+  font-family: inherit;
+}
+
+.ascii-orb {
+  margin: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  line-height: 1.05;
+}
+
+.cursor-block {
+  display: inline-block;
+  width: .62em;
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+.crt-on::before {
+  position: fixed;
+  z-index: 70;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  opacity: .045;
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 3px, #fff 4px);
+  mix-blend-mode: screen;
+}
+
+.crt-on::after {
+  position: fixed;
+  z-index: 70;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  opacity: .035;
+  background: radial-gradient(ellipse at center, transparent 55%, #fff 100%);
+}
+
+.mono {
+  --accent: #ffffff;
+}
+
+.terminal-frame {
+  min-height: 100%;
+}
+
+.terminal-frame::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 1px;
+  content: '';
+  background: linear-gradient(to left, var(--accent), transparent);
+  opacity: .55;
+}
+
+.terminal-title {
+  background: linear-gradient(to right, rgba(183, 243, 151, .035), transparent 40%);
+}
+
+@keyframes cursor-blink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ascii-orb {
+    font-size: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .001ms !important;
+  }
+
+}
